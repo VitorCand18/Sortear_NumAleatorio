@@ -13,81 +13,63 @@ body {
     justify-content: center;
 }
 
-body::before {
-    background-image: url("img/code.png");
-    background-repeat: no-repeat;
-    background-position: right;
-    content: "";
-    display: block;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    opacity: 0.4;
-}
-
 .container {
-    width: 80%;
+    width: 90%; /* Diminuindo para melhor adaptação em telas menores */
+    max-width: 1200px; /* Tamanho máximo da tela */
     min-height: 50vh;
     display: flex;
+    flex-direction: column; /* Alinha os campos verticalmente */
+    justify-content: center; 
     align-items: center;
-    justify-content: space-between;
     border-radius: 24px;
     border: 1px solid #1875E8;
     box-shadow: 4px 4px 20px 0px rgba(1, 8, 14, 0.15);
     background-image: url("img/Ruido.png");
-    background-size: 100% 100%;
+    background-size: cover;
     position: relative;
     overflow: hidden;
 }
 
 .container__conteudo {
-    display: flex;
-    align-items: center;
-    position: relative;
     width: 100%;
+    display: flex;
+    justify-content: center; /* Centraliza o conteúdo */
+    flex-direction: column; /* Garante o layout em coluna */
 }
 
 .container__informacoes {
-    flex: 1;
+    width: 100%;
     padding: 3rem;
-}
-
-.container__texto {
-    margin: 12px 0;
-    display: flex;
-    flex-direction: column;
-}
-
-.container__texto-azul {
-    color: #1875E8;
-    display: block;
-
+    text-align: center; /* Centraliza o texto */
 }
 
 .container__campo {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 12px;
+    margin-bottom: 30px; /* Aumentando o espaçamento entre campos */
 }
 
 .container__input {
-    width: 130px;
-    height: 72px;
+    width: 200px; /* Aumentando a largura dos inputs */
+    height: 60px; /* Ajustando a altura */
     border-radius: 16px;
     background-color: #FFF;
     border: none;
     color: #1875E8;
-    padding: 2rem;
+    padding: 0 1rem; /* Ajuste no padding */
     font-size: 24px;
     font-weight: 700;
     font-family: 'Inter', sans-serif;
+    margin: 10px 0; /* Margem para separar os inputs */
+}
+
+.container__texto{
+    margin: 30px;
 }
 
 .container__botoes {
     display: flex;
-    flex-direction: row;
+    justify-content: center; /* Centraliza os botões */
     gap: 1em;
+    margin-top: 20px; /* Espaço extra acima dos botões */
 }
 
 .container__botao {
@@ -95,7 +77,7 @@ body::before {
     background: #1875E8;
     padding: 16px 24px;
     font-size: 24px;
-    width: 100%;
+    width: 250px; /* Tamanho dos botões */
     font-weight: 700;
     border: none;
     cursor: pointer;
@@ -106,7 +88,7 @@ body::before {
     background: #6f6f70;
     padding: 16px 24px;
     font-size: 24px;
-    width: 100%;
+    width: 250px;
     font-weight: 700;
     border: none;
     cursor: not-allowed;
@@ -115,29 +97,43 @@ body::before {
 h1 {
     font-family: 'Chakra Petch', sans-serif;
     font-size: 72px;
-    font-style: normal;
     font-weight: 700;
     line-height: 100%;
     padding: 2rem;
+    text-align: center;
 }
 
 .texto__paragrafo {
     color: #FFF;
     font-family: 'Inter';
-    font-size: 32px;
-    font-style: normal;
+    font-size: 29px;
     font-weight: 400;
     line-height: normal;
-}
-
-.container__imagem-pessoa {
-    max-width: 100%;
-    height: auto;
-    margin-top: 2rem;
+    padding: 1rem;
 }
 
 button:disabled {
     background-color: gray;
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        width: 95%; /* Para dispositivos móveis, uso de maior largura */
+    }
+
+    h1 {
+        font-size: 50px;
+    }
+
+    .container__input {
+        width: 100%; /* Inputs ocupando toda a largura */
+        font-size: 20px;
+        padding: 0.5rem;
+    }
+
+    .container__botao {
+        width: 100%; /* Botões se adaptando à largura */
+    }
 }
 
 @media screen and (max-width: 1250px) {
