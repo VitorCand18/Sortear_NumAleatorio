@@ -10,19 +10,23 @@ function sortear(){
 
     if (ate < de) {
         alert("O valor 'Até' não pode ser menor que o valor 'De'.");
+        document.getElementById("ate").value = '';
         return; // Interrompe a execução se o intervalo for inválido.
+    }
+
+    let distanciaEntreNumeros = ate - de + 1; // Soma +1 para incluir o valor "ate"
+    
+    if (quantidade > distanciaEntreNumeros) {
+        alert("O número de sorteios é maior do que o número de opções disponíveis no intervalo.");
+        document.getElementById("quantidade").value = '';
+        return; // Interrompe a execução do sorteio
     }
 
     let sorteados = [];
     let numero;
 
     for (let i = 0; i < quantidade; i++) {
-        // Se "de" e "ate" forem iguais, o número sorteado será o próprio valor de "de" (ou "ate")
-        if (de === ate) {
-            numero = de;
-        } else {
-            numero = obterNumeroAleatorio(de, ate);
-        }
+        numero = obterNumeroAleatorio(de, ate);
 
         // Se o número já foi sorteado, tenta novamente
         while (sorteados.includes(numero)) {
