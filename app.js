@@ -3,45 +3,57 @@ function sortear(){
     let de = parseInt(document.getElementById("de").value);
     let ate = parseInt(document.getElementById("ate").value);
     
+    if (!quantidade || !de || !ate) {
+        alert("Preencha os campos, por favor.");
+        return; // Se algum campo estiver vazio, a função é interrompida.
+    }
 
     let sorteados = [];
     let numero;
 
-    for (let i = 0; i < quantidade; i++){
-
+    for (let i = 0; i < quantidade; i++) {
         numero = obterNumeroAleatorio(de, ate);
 
-        while (sorteados.includes(numero)){ // .includes devolve um booleano se for true avança se for false repete o laço.
-            numero = obterNumeroAleatorio(de, ate)
+        while (sorteados.includes(numero)) { // Se o número já foi sorteado, tenta novamente.
+            numero = obterNumeroAleatorio(de, ate);
         }
 
         sorteados.push(numero);
     }
 
     let resultado = document.getElementById("resultado");
-    resultado.innerHTML = `<label id="numeroSorteado" class="texto__paragrafo">Números sorteados:  ${sorteados} </label>`;
-    alterarStatusBotao();
+    resultado.innerHTML = `<label id="numeroSorteado" class="texto__paragrafo">Números sorteados: ${sorteados} </label>`;
+    
+    // Após o sorteio, habilitar o botão de reiniciar
+    alterarStatusBotao(true);
 }
 
 function obterNumeroAleatorio(min, max){
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function alterarStatusBotao(){
-    let botao = document.getElementById('btn-reiniciar');   
-    if (botao.classList.contains('container__botao-desabilitado')) {
+// Habilitar ou desabilitar o botão de reiniciar, baseado no estado do sorteio.
+function alterarStatusBotao(estado) {
+    let botao = document.getElementById('btn-reiniciar');
+    
+    if (estado) {
+        // Se sorteio ocorreu, habilita o botão de reiniciar.
         botao.classList.remove("container__botao-desabilitado");
         botao.classList.add("container__botao");
-    } else{
+    } else {
+        // Se não houver sorteio, desabilita o botão de reiniciar.
         botao.classList.remove("container__botao");
         botao.classList.add("container__botao-desabilitado");
     }
 }
 
+// Função de reiniciar que limpa os campos e desabilita o botão de reiniciar.
 function reiniciar(){
     document.getElementById("quantidade").value = '';
     document.getElementById("de").value = '';
     document.getElementById("ate").value = '';
-    document.getElementById("resultado").innerHTML = `<label id="numeroSorteado" class="texto__paragrafo">Números sorteados:  nenhum até agora</label>`;
-    alterarStatusBotao();
+    document.getElementById("resultado").innerHTML = `<label id="numeroSorteado" class="texto__paragrafo">Números sorteados: nenhum até agora</label>`;
+
+    // Desabilitar o botão de reiniciar ao reiniciar os campos
+    alterarStatusBotao(false);
 }
