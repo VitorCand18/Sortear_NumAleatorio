@@ -17,9 +17,15 @@ function sortear(){
     let numero;
 
     for (let i = 0; i < quantidade; i++) {
-        numero = obterNumeroAleatorio(de, ate);
+        // Se "de" e "ate" forem iguais, o número sorteado será o próprio valor de "de" (ou "ate")
+        if (de === ate) {
+            numero = de;
+        } else {
+            numero = obterNumeroAleatorio(de, ate);
+        }
 
-        while (sorteados.includes(numero)) { // Se o número já foi sorteado, tenta novamente.
+        // Se o número já foi sorteado, tenta novamente
+        while (sorteados.includes(numero)) {
             numero = obterNumeroAleatorio(de, ate);
         }
 
