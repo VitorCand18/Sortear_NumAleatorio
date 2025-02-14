@@ -4,8 +4,13 @@ function sortear(){
     let ate = parseInt(document.getElementById("ate").value);
     
     if (!quantidade || !de || !ate) {
-        alert("Preencha os campos, por favor.");
+        alert("Preencha todos os campos, por favor.");
         return; // Se algum campo estiver vazio, a função é interrompida.
+    }
+
+    if (ate < de) {
+        alert("O valor 'Até' não pode ser menor que o valor 'De'.");
+        return; // Interrompe a execução se o intervalo for inválido.
     }
 
     let sorteados = [];
